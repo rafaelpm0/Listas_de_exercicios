@@ -984,14 +984,6 @@ consumo.index(max(consumo))
 
 
 Exercicio 60 não vou fazer, é junção de tres exercicios anteriores
-Exercicio 61 e 62, é interessante se sobrar tempo.
+Exercicio 61 e 62, é interessante se sobrar tempo..
 
 """
-
-
-numero = int(input('Digite um inteiro positivo para que seja impresso "n" linhas de Floyd. Numero: '))
-
-while numero < 0:
-    numero = int(input('Digite um numero valido: '))
-
-print(flody(numero))
