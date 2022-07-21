@@ -400,6 +400,8 @@ for i in range(0, 10):
 print(f'Lista a {a}\nLista b {b}\ne Lista c (a-b): {c}')
 
 Exercicio 22:
+Faça um programa que dois vetores de 10 posições e calcule outro vetor contendo, nas posições pares os valores do
+primeiro e na posições impares os do segundo
 
 
 import random
@@ -423,7 +425,28 @@ print(a)
 print(b)
 print(c)
 
+Após curso
+import random
+
+
+#apos curso
+
+a = [random.randint(1, 100) for _ in range(10)]
+b = [random.randint(1, 100) for _ in range(10)]
+z = []
+
+for c, d in zip(a, b):
+    z.append(c)
+    z.append(d)
+
+print(a)
+print(b)
+print(z)
+
+
 Exercicio 23:
+Ler dois conjuntos de números reais, armazenando-os em vetores e calcular o produto escalar entre eles. Os conjuntos
+ tem 5 elementos cada. Imprimir os dois conjuntos e o produto escalar.
 
 import random
 
@@ -438,7 +461,11 @@ for i in range(0, len(x)):
 
     print(f'O produto escalar de indice {i} é {x[i] * y[i]}')
 
+
 Exercicio 24:
+.Faça um programa que leia dez conjuntos de dois valores, o primeiro representando o número do aluno e o segundo
+representando a sua altura em metros. Encontre o aluno mais baixo e o mais alto. Mostre o número do aluno mais baixo
+e do mais alto, juntamente com suas alturas.
 
 import random
 
@@ -455,7 +482,10 @@ for chave, valor in alunos.items():
     elif valor == min(alunos.values()):
         print(f'O menor aluno é o {chave}º da lista com altura de {valor}')
 
+
 Exercicio 25:
+Faça um programa que prencha um vetor de tamanho 100 com os 100 primeiros números naturais que são multuplos 7 ou
+terminar em 7
 
 def ultimo7(x):
     x = str(x)
@@ -474,9 +504,24 @@ while len(array) < 100:
         array.append(conta)
     conta += 1
 
+
 print(array)
 
+#após o curso
+
+lista = []
+conta = 1
+
+while len(lista) < 100:
+    if (conta % 7 == 0) or (str(conta)[-1] == "7"):
+        lista.append(conta)
+    conta += 1
+
+print(lista)
+
+
 Exercicio 26:
+Faça um programa que calcule o descio padrão de um vetor v contendo n=10 números, onde m é a media do vetor
 
 import random
 
@@ -493,11 +538,14 @@ resultado = ((1/(len(numero)-1)) * sum(somatorio)) ** 0.5
 
 print(resultado)
 
+
 Exercicio 27:
+Leia 10 números inteiros e armazena em um vetor. Em seguida escreva os elemntos que são primos e suas respectivas
+posições no vetor
 
 import random
 
-vetor = random.sample(range(1, 11), 10)
+vetor = [range(11)]
 count = 0
 
 print(vetor)
@@ -512,7 +560,11 @@ for i in vetor:
         print(f'O numero {i} é primo e seu indexador é {vetor.index(i)}')
     count = 0
 
+
 Exercicio 28:
+Leia 10 números inteiros e amarzene em um vetor v. Crie dois novos vetores v1 e v2. Copie os valores ímpares de v
+para v1, e os valores pares de v para v2. Note que cada um dos vetores v1 e v2 têm no máximo 10 elementos, mas nem
+todos os elementos são utilizados. No final escreva os elementos UTILIZADOS de v1 e v2.
 
 import random
 
@@ -531,9 +583,13 @@ for i in range(0, 10):
 print(f'Foram armazeados {len(v1)} elementos impares em v1, sendo eles: {v1}')
 print(f'Foram armazeados {len(v2)} elementos pares em v1, sendo eles: {v2}')
 
+
 Exercicio 29 -  não vou fazer, mistura preguiçosa de outros exercicios
 
 Exercicio 30:
+Faça um programa que leia dois vetores de 10 elementos. Crie um vetor que seja a
+intersecção entre os 2 vetores anteriores, ou seja, que contém apenas os números que
+estão em ambos os vetores. Não deve conter números repetidos.
 
 import random
 
@@ -546,6 +602,9 @@ print(b)
 print(a.intersection(b))
 
 Exercicio 31:
+Faça um programa que leia dois vetores de 10 elementos. Crie um vetor que seja a união
+entre os 2 vetores anteriores, ou seja, que contém os números dos dois vetores. Não
+deve conter números repetidos.
 
 import random
 
@@ -557,7 +616,10 @@ print(b)
 
 print(a.union(b))
 
+
 Exercicio 32:
+Leia 2 vetores. Retorne a soma, o produto e a diferença com elementos da mesma posição. Retorne também sua interseção
+e união
 
 import random
 
@@ -572,7 +634,9 @@ print(f'A diferença dos vetores é de {set(a).difference(set(b))}')
 print(f'A união dos vetores é de {set(a).union(set(b))}')
 print(f'A interseção dos vetores é de {(set(a).intersection(set(b)))}')
 
+
 Exercicio 33:
+Faça um programa que leia um vetor de 15 posições e o compacte, ou seja, elimine as posições com valor zero
 
 import random
 
@@ -589,7 +653,10 @@ for i in a:
 
 print(a)
 
+
 Exercicio 34:
+Escerva um programa em que o usuário digite 10 valores em uma lista. Caso o valor já exista peça para o usuário
+para o usário reescrever
 
 vetor = []
 entrada = 0
@@ -617,7 +684,34 @@ for c in range(10):
 
 print(vetor)
 
+
+# após curso, GZUIS que rolo que eu fiz aqui... isso que da estudar pós serviço.
+
+lista = []
+
+while len(lista) < 10:
+    if len(lista) == 0:
+        lista.append(input('Digete um numero real: '))
+    else:
+        while True:
+            entrada = input('Digete um numero real: ')
+            if entrada not in lista:
+                lista.append(entrada)
+                break
+            else:
+                entrada = input('Numero repitido, digite outro: ')
+                if entrada not in lista:
+                    lista.append(entrada)
+                    break
+
+print(lista)
+
+
 Exercicio 35:
+Faça um programa que leia dois números 'a' e 'b'(positivos e menores que 10000) e:
+1-Crie um vetor onde cada posição é um algarismo do número. A primeira posição é o algarismo menos significativo.
+2-Crie um vetor que seja a soma de 'a' e 'b', mas faça-o apenas usando os vetores construídos anteriormente
+
 
 a = int(input('Informe um número menor que 10000: '))
 b = int(input('Informe outro número menor que 10000: '))
@@ -644,16 +738,25 @@ if a < 10_001 and b < 10_001:
 else:
     print('Valores informados incorretos')
 
+# ta razoavel, mas não vou refazer
+
+
 Exercicio 36:
+Leia um vetor com 10 números reais, ordene os elementos deste vetor, e no final escreva os elementos do vetor ordenado
+
 import random
 
 
-vetor = random.sample(range(50), 10)
+vetor = random.sample(range(50), 10)   #em minha defesa nao havia aprendido list comprehension
 print(vetor)
 vetor.sort()
 print(vetor)
 
+
 Exercicio 37:
+Considere um vetor A com 11 elementos onde A1 < A2 < ...< A6 > A7 > A8 > .. > A11, ou seja, está ordenado em ordem
+crescente até o sexto elemento, e a partir deste elemento está ordenado em ordem decrescente. Dado o vetor da questão
+anterior, proponha um algoritmo para ordenar os elementos.
 
 import random
 
@@ -675,7 +778,10 @@ vetor.extend(vetor_t)
 
 print(vetor)
 
+
 Exercicio 38:
+Peça ao usuário para digitar 10 valores numéricos e ordene por ordem crescente esses valores, guardando-os num vetor.
+Ordene o valor assim que ele for digitado, mostre ao final na tela os valores na ordem.
 
 vetor = []
 
@@ -684,7 +790,10 @@ for i in range(10):
     vetor.sort()
     print(f'Valores ordenados: {vetor}')
 
+
 Exercicio 39:
+Escreva um programa que leia um número inteiro positivo n e em seguida imprima n linhas do triangulo de pascal
+
 
 def fat(x):
     if x <= 1:  # Por ser triangulo de pascal foi preciso colocar <= assim corrige o valor zero do triangulo q é 1
@@ -708,6 +817,7 @@ for li in range(n):
     for co in range(li+1):
         print(pascal(li, co), end=' ')
     print('')
+
 
 Exercicio 39 - Solução do coleguinha. OBS: exercictar mais matriz, fiz o mais dificil huehue
 
