@@ -1106,7 +1106,7 @@ for i in matriz_t:
     print(i)
 
 
-Exercicio 13:
+Exercicio 13:  #CONTINUAR DAQUI
 
 matriz = []
 num = 0
