@@ -835,9 +835,12 @@ for i in range(numero):
         print(matriz[i][j], end=' ')
     print()
 
-A PARTIR DAQUI É TUDO EXERCICIO PARTE 2
+
+A PARTIR DAQUI É TUDO EXERCICIO PARTE 2, POR ISSO REINICIA CONTAGEM
+
 
 Exercicio 1:
+Leia uma matriz 4x4, conte e escreva quantos valores maiores de 10 ela possui.
 
 import random
 
@@ -856,7 +859,10 @@ for lin in range(4):
 print(matriz)
 print(f'Nesta matriz existem {contador} maiores que 10')
 
+
 Exercicio 02:
+Declare uma matriz 5x5. Preencha com 1 a diagonal e com 0 os demais elementos. Escreva ao final a matriz obtida.
+
 matriz = []
 
 for linha in range(5):
@@ -872,7 +878,11 @@ for linha in range(5):
 for a in matriz:
     print(a)
 
+
 Exercicio 03:
+Faça um programa que preeche uma matriz 4x4 com o produto do valor da linha e da coluna de cada elemento.
+Em seguida imprima na tela
+
 
 t = []
 
@@ -881,72 +891,39 @@ for linha in range(5):
     for coluna in range(5):
         temp.append(linha*coluna)
     t.append(temp)
-print(t)
+    print(temp)
+
 
 Exercicio 4:
+Leia uma matriz 4x4, imprima a matriz e retorne a localização (linha e coluna) do maior valor
+
 
 import random
 
-matriz = []
-n = int(input('Digite um numero para gerar uma matriz X - X aletoria e retornar o maior valor: '))
+matriz = [[random.randint(1, 200) for _ in range(2)] for _ in range(2)]
+numero = 0
 
-for linha in range(n):
-    temp = []
-    for coluna in range(n):
-        temp.append(random.randint(1, 200))
-    matriz.append(temp)
-
-temp.clear()
-
-for linha in range(2):
-    temp = [0, 0, 0]
-    for coluna in range(2):
-        if matriz[linha][coluna] > temp[2]:
-            temp = [linha, coluna, matriz[linha][coluna]]
-
-print(matriz)
-print(f' O maior numero foi {temp[2]}, na linha {temp[0]} e coluna {temp[1]}')
-
-Outra forma de resolver coleguinha
-
-import random
-
-matriz = []
-n = 4
-
-for linha in range(n):
-    temp = []
-    for coluna in range(n):
-        temp.append(random.randint(1, 200))
-    matriz.append(temp)
+for l in range(len(matriz)):
+    for c in range(len(matriz)):
+        if numero < matriz[l][c]:
+            numero = matriz[l][c]
+            linha = l
+            coluna = c
 
 
 print(matriz)
-maior = max(max(linha) for linha in matriz)
+print(f'O maior valor é {numero}, na linha {linha} e coluna {coluna}')
 
-Outro coleguinha precoce (porra conteudo de 2 unidades na frente, não fode!!)
-
-import random
-
-matriz = []
-n = 4
-
-for linha in range(n):
-    temp = []
-    for coluna in range(n):
-        temp.append(random.randint(1, 200))
-    matriz.append(temp)
-
-
-print(matriz)
-maior = max(max(linha) for linha in matriz)
-posicao = [str(matriz.index(linha)) + str(linha.index(n)) for linha in matriz for n in linha if n == maior]
-
-print(maior, posicao)
 
 Exercicio 5:
+Leia uma matriz 5x5. Leia também um valor X. O programa deverá fazer uma busca desse valor na matriz e, ao final, escre
+ver a localização ou uma mensagem de não encontrado
+
+
+import random
 
 matriz = [list(range(5)), list(range(5, 10)), list(range(10, 15)), list(range(15, 20)), list(range(20, 25))]
+# KKKK sensacional a criatividade aqui. Nao atende muito bem o enunciado mas vou deixar assim
 
 n = int(input('Digite um numero de 0 a 24 para buscar na lista e será informada sua posição: '))
 
@@ -960,9 +937,12 @@ for linha in range(5):
             contador += 1
 
 if contador != 24:
-    print('Valor não encontrado')
+    print('Valor não encontrado'))
+
 
 Exercicio 6:
+Leia duas matrizes 4x4 e escreva uma terceira com os maiores valores de cada posição da matrizes
+
 
 import random
 
@@ -984,7 +964,12 @@ print(matriz_1, end='\n')
 print(matriz_2, end='\n')
 print(matriz_r, end='\n')
 
+
 Exercicio 7:
+Gerar e imprimir uma matriz de tamanho 10 x 10 onde seus elementos são da seguinte forma:
+a[i][j] = 2i + 7i -2 se i<j
+a[i][j] = 3i² -1 se i = j
+a[i][j] = 4i³ - 5j² + 1 se i > j
 
 
 matriz = []
@@ -1004,49 +989,52 @@ for linha in range(10):
 for linha in matriz:
     print(linha)
 
+
 Exercicio 8:
-
-
-import random
-
+Leia uma matriz 3x3 elementos. Calcule a sma dos elementos que estão acima da diagonal principal
 
 matriz = [[random.randint(1, 5) for coluna in range(3)] for linha in range(3)]
-posi = [0, 1]
+posi = 0
 soma = 0
 
 for linha in range(3):
     for coluna in range(3):
-        if linha == posi[0] and coluna == posi[1]:
+        if coluna > posi:
             soma += matriz[linha][coluna]
-            posi[0] += 1
-            posi[1] += 1
+
+    posi += 1
+
 
 for i in matriz:
     print(i)
 
 print(soma)
+
 
 Exercicio 9:
-
+Leia uma matriz 3x3 elementos. Calcule a sma dos elementos que estão abaixo da diagonal principal
 
 import random
 
 
 matriz = [[random.randint(1, 5) for coluna in range(3)] for linha in range(3)]
-posi = [1, 0]
+posi = 0
 soma = 0
 
 for linha in range(3):
+
     for coluna in range(3):
-        if linha == posi[0] and coluna == posi[1]:
+        if coluna < posi:
             soma += matriz[linha][coluna]
-            posi[0] += 1
-            posi[1] += 1
+
+    posi += 1
+
 
 for i in matriz:
     print(i)
 
 print(soma)
+
 
 Exercicio 10:
 
@@ -1070,7 +1058,9 @@ for i in matriz:
 
 print(soma)
 
+
 Exercicio 11:
+Leia uma matriz de 3x3 elementos. Calcule a soma dos elementos que estão na diagonal segundária
 
 import random
 
@@ -1092,6 +1082,7 @@ for i in matriz:
 print(soma)
 
 Exercicio 12:
+Leia uma matriz de 3x3. Calcule e imprima sua transposta
 
 import random
 
@@ -1113,6 +1104,7 @@ print('')
 
 for i in matriz_t:
     print(i)
+
 
 Exercicio 13:
 
