@@ -4,9 +4,10 @@ import sys
 
 class Txt:
 
-    def __init__(self, arquivo: str, item: int, quantidade: float) -> None:
+    def __init__(self, arquivo: str, item: str, quantidade: float) -> None:
+        """Recebe todas as informacoes para criacao do arquivo txt"""
         self.__arquivo = arquivo
-        self.__item = item
+        self.__item = item                 # item sempre armazer formatando com title
         self.__quantidade = quantidade
 
     @property
@@ -22,22 +23,21 @@ class Txt:
         return self.__quantidade
 
     @g_arquivo.setter
-    def g_arquivo(self, arquivo):
+    def g_arquivo(self, arquivo: str):
         self.__arquivo = arquivo
 
     @g_item.setter
-    def g_item(self, item):
+    def g_item(self, item: str):
         self.__item = item
 
     @g_quantidade.setter
-    def g_quantidade(self, quantidade):
+    def g_quantidade(self, quantidade: float):
         self.__quantidade = quantidade
-
-    def __add__(self, other):
-        return self.__arquivo + other
 
 
 class Manipula_Txt(Txt):
+    """Realiza toda as manipulacoes e verificacoes necessarias no arquivo txt. Todo metodo usa o valor atual da
+    classe para funcinamento, por isso antes da execucao de cada metodo redefinam o Txt.g_item e Txt.g_quantidade."""
 
     @staticmethod
     def verifica_exit_arq_entrada() -> None:
@@ -51,11 +51,64 @@ class Manipula_Txt(Txt):
 
     @staticmethod
     def cria_arquivo():
+        """Realiza a criacao do arquivo txt"""
         try:
-            with open(Txt.g_arquivo, 'w', encoding='utf-8') as arquivo:
+            with open(Txt.g_arquivo, 'w', encoding='utf-8'):
                 pass
         except Exception as error:
             print(error)
+
+    @staticmethod
+    def verifica_item():
+        """Verifica se o item sendo passado na classe TXT existe no arquivo txt"""
+        with open(Txt.g_arquivo, 'r+', encoding='utf-8') as arq:
+            lista = arq.readlines()
+            for i in lista:
+                if Txt.g_item in i:
+                    return True
+            return False
+
+    @staticmethod
+    def add_item():
+        """"Adiconar o item atualmente informado na classe TXT no arquivo txt"""
+        with open(Txt.g_arquivo, 'a', encoding='utf-8') as arq:
+            arq.write(f'{Txt.g_item};{Txt.g_quantidade}\n')
+
+    @staticmethod
+    def atualiza_item():
+        """Verfica a existencia do item na lista e atualiza a quantidade do item"""
+        arquivo = open(Txt.g_arquivo, 'r', encoding='utf-8').readlines()
+        with open(Txt.g_arquivo, 'w', encoding='utf-8') as arq:    # Da para juntar com a funcao remover, só criar # um parametro para remover ou atualizar
+            for i in arquivo:
+                if Txt.g_item in i:
+                    arq.write(f'{Txt.g_item};{Txt.g_quantidade}\n')
+                else:
+                    arq.write(i)
+
+    @staticmethod
+    def remover_item():
+        """Remove o item informado atualmente da lista"""
+        arquivo = open(Txt.g_arquivo, 'r', encoding='utf-8').readlines()
+        with open(Txt.g_arquivo, 'w', encoding='utf-8') as arq:
+            for i in arquivo:
+                if Txt.g_item in i:
+                    pass
+                else:
+                    arq.write(i)
+        return print(f'Item "{Txt.g_item}" removido.')
+
+    @staticmethod
+    def gerar_relatorio():
+
+        conteudo = open(Txt.g_arquivo, 'r', encoding='utf-8').readlines()
+        print('========================================================='
+              '\n|Nº           DESCRICAO            QUANTIDADE           |')
+        for i in conteudo:
+            parte = i.split(";")
+            print(f'|{conteudo.index(i)+1}             {parte[0]}{" "*(21-len(parte[0]))}{parte[1].rstrip()}'
+                  f'                  |')
+
+        print('=========================================================')
 
 
 def inicia_txt() -> None:
@@ -78,38 +131,49 @@ def inicia_txt() -> None:
 
 
 def add_at_txt():
-    menu = input('\n[1] Adicionar novo item, [2] Atualizar item: , [3] Voltar o menu: ')
+    menu = input('\n[1] Adicionar novo item, [2] Atualizar item: ')
+
+    Txt.g_item = input('Digite a descrição do produto: ').title()
+    Txt.g_quantidade = input('Digite a quantidade: ')
+
     if menu == '1':
-        desc = input('Digite a descrição do produto: ').upper()
-        quant = input('Digite a quantidade: ')
-        with open(Txt.g_arquivo, 'a+', encoding='utf-8') as arq:   # erro no loop, tem de ver oque faz quando a lista está zerada, pois fiz percorrer todo o caminho, mas não tem oque ler
-            lista = arq.readlines()
-            if len(lista) != 0:
-                for i in lista:
-                    if desc not in i.split(';')[0]:
-                        arq.write(f'{desc};{quant}')
-                    else:
-                        return print('Item existente, fazer utiliza a opcao 2.')
-            else:
-                arq.write(f'{desc};{quant}')
+        if Manipula_Txt.verifica_item() is False:
+            Manipula_Txt.add_item()
+            return None
+        else:
+            return print('Item existente, favor utilizar a opcao 2.')
+    elif menu == '2':
+        if Manipula_Txt.verifica_item() is True:
+            Manipula_Txt.atualiza_item()
+            return None
+        else:
+            return print('Item inexistente, favor utilizar a opcao 1.')
+    else:
+        print('Menu inexistente. Selecione novamente')
+
+
+def remover_item():
+    Txt.g_item = input('Digite a descrição do produto: ').title()
+    Manipula_Txt.remover_item()
+    return None
 
 
 def main() -> None:
     inicia_txt()
 
-    menu = input('\nDigite [1] Para adicionar/atualizar um item a lista, [2] Remover um item da lista, [3] Gerar '
-                 'relaório e [4] Encerrar o programa: ')
-
     while True:
+
+        menu = input('\nDigite [1] Para adicionar/atualizar um item a lista, [2] Remover um item da lista, [3] Gerar '
+                     'relaório e [4] Encerrar o programa: ')
+
         if menu == '1':
             add_at_txt()
-        if menu == '2':
-            pass
-        if menu == '3':
-            pass
+        elif menu == '2':
+            remover_item()
+        elif menu == '3':
+            Manipula_Txt.gerar_relatorio()
         else:
-            print('Comando invalido. Programa finalizado')
+            print('Obrigado! Programa finalizado')
             break
-
 
 main()
