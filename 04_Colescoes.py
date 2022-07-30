@@ -1106,18 +1106,13 @@ for i in matriz_t:
     print(i)
 
 
-Exercicio 13:  #CONTINUAR DAQUI
+Exercicio 13:
+Gere uma matriz 4x4 com valores no intervalo [1,20]. Escreva um programa que transforme a matriz gerada em uma
+matriz triangular inferior, ou seja, atribuindo zero a todos os elementos acima da diagonal principal. Imprima a matriz
+original e a matriz transformada
 
-matriz = []
-num = 0
+matriz = [[1 for _ in range(4)] for _ in range(4)]
 
-for linha in range(4):
-    temp = []
-    for colina in range(4):
-        temp.append(num)
-        num += 1
-
-    matriz.append(temp)
 
 for i in matriz:
     print(i)
@@ -1131,23 +1126,32 @@ print('')
 for i in matriz:
     print(i)
 
+
 Exercicio 14:
+Faça um programa para gerar automaticamente números entre 0 99 de uma cartela de bingo. Sabendo que cada certela
+decerá conter 5 linhas de 5 números, gere estes dados de mo a não ter números repetidos dentro das cartelas. O
+programa deve exibir na tela a cartela gerada
 
-matriz = []
-num = 0
+import random
 
-for linha in range(10):
-    temp = []
-    for colina in range(10):
-        temp.append(num)
-        num += 1
+amostra = random.sample(range(100), 25)
+bingo = []
+temp = []
 
-    matriz.append(temp)
+for i in range(25):
+    temp.append(amostra[i])
+    if i % 5 == 0 and i != 0:
+        bingo.append(temp)
+        print(temp)
+        temp = []
+    else:
+        pass
 
-for i in matriz:
-    print(i)
 
 Exercicio 15:
+Leia uma matriz 5x10 que se refere as respostas de 10 questoes de multipla escolha, referente a 5 alunos. Leia também
+um vetor de 10 posições contendo o gabarito de repostas entre a A d. Seu programa deve comprar as respostas de cada
+condidato com gabarito e emitir um vetor denominado resultado, contendo a pontuação correspondente a cada aluno
 
 import random
 
@@ -1171,8 +1175,11 @@ print(f'O gabarito é {resp_g}')
 for i in range(len(pontuacao)):
     print(f'O aluno {i+1} obeteve a pontuação {pontuacao[i]}')
 
-Exercicio 16:
 
+Exercicio 16:
+Faça um programa para corrigir uma prova com 10 questoes de multipla escolha de a A e, em uma turma com 3 alunos. Cada
+questão vale 1 ponto. Leia o gabarito, e para cada aluno leia sua matricula e suas repostas. Calcule e escreva: Para
+cada aluno, escreva sua matricula, suas respostas, e sua nota. O percentual de aprovação, assumindo a média de 7.0
 
 import random
 
@@ -1209,7 +1216,12 @@ for i, b in pontuacao.items():
 
 
 Exercicio 17  (não é oque o exercicio pediu...):
+Leia uma matriz 10x3 com as notas de 10 alunos em tres provas. Em seguida, escreva o número de alunos cuja pior nota
+foi na prova 1, o numero de alunos cuja pior nota foi na prova 2, e o número de aluno cuja pior nota foi na prova 3.
+Em caso de empate nas piores notas de um aluno, o critério de desempate é arbitrário, mas o aluno deve ser contabilizado
+apenas uma vez
 
+#implementacao junto do exercicio anterior e depois tem uma resolucao mais simples para atender a questão
 import random
 
 
@@ -1252,7 +1264,11 @@ for i in range(3):
     temp = Counter(notas[i])
     print(f' {min(temp.values())} Alunos tirarm {min(temp.keys())} na prova {i}')
 
+
 Exercicio 18:
+Faça um programa que permita ao usuário entrar com uma matriz de 3x3 números inteiros. Em seguida, gere um array
+unidimencional pela soma dos números de cada coluna da matriz e mostrar na tela esse array.
+
 
 import random
 
@@ -1275,7 +1291,11 @@ print(f'A soma foi de {soma}')
 
 Vou pular a 19, só enche o saco.
 
+
 Exercicio 20:
+Faça um programa que leia uma matrix 3x6 com valores reais. A - soma dos elementos de colunas impares
+b - media aritimetica dos elementos da segunda e quarta coluna. c - Substituir os valores da sexta coluna pela soma dos
+valores das colunas 1 e 2. D - Imprimir a matriz modificada
 
 import random
 
@@ -1302,7 +1322,10 @@ print(f'Substitiuindo a sexta coluna pela soma da coluna um e dois temos: ')
 for i in matriz:
     print(i)
 
+
 Exercicio 21:
+Faça um programa que leia duas matrizes 2x2 com valores reais. Ofereça ao usuário menu:
+a - somar as matrizes. b substrir as matrizes. c adicionar uma constante as duas matrizes. d imprimir
 
 import random
 
@@ -1367,6 +1390,7 @@ for i in range(len(matriz_a)):
 
 
 Exercicio 22:
+Faça um programa que meia duas matrizes. A e B de tamanho 3x3 e calcule C = A * B
 
 import random
 
@@ -1392,20 +1416,20 @@ for i in range(len(matriz_a)):
 
 
 Exercicio 23:
+Faça um programa que leia uma matriz A de matanho 3x3 e calcule b=A²
 
 import random
 
 matriz_a = [[random.randint(1, 10) for _ in range(3)] for _ in range(3)]
 matriz_c = []
 
-print(len(matriz_a))
+
 
 for linha in range(len(matriz_a)):
     temp = []
     for coluna in range(len(matriz_a)):
         soma = 0
         for inverso in range(len(matriz_a)):
-            print(linha, coluna, inverso)
             soma += (matriz_a[linha][inverso] * matriz_a[inverso][coluna])
         temp.append(soma)
     matriz_c.append(temp.copy())
@@ -1413,9 +1437,7 @@ for linha in range(len(matriz_a)):
 for i in range(len(matriz_a)):
     print(matriz_a[i], ' ' * 10, matriz_c[i])
 
-
-
-"""
+Exercicio 24:
 
 matriz = [[8, 2, 22, 97, 38, 15, 00, 40, 00, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8],
           [49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 4, 56, 62, 0],
@@ -1438,45 +1460,50 @@ matriz = [[8, 2, 22, 97, 38, 15, 00, 40, 00, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91
           [20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54],
           [61, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]]
 
-'A função abaixo irá localizar qualquer conbinação de produtos desejada, tendo uma condição de parada e quais ' \
-'produtos multiplica. Assim temos que informar a matriz, a condicação de parada, o passo da linha e o passo da coluna'
 
+def maior(matriz: list[list]):
+    tamanho_matriz = len(matriz)
+    direcao = {"esquerda": [0, 1], "baixo": [1, 0], "diagonal": [1, 1], 'anti_diagonal': [1, -1]}
+    dados = {}
 
-lin = 0
-col = 0
+    for linha in range(tamanho_matriz):
+        for coluna in range(tamanho_matriz):  # percorrer a matriz
 
+            for key in direcao.keys():  # percorre o dicionário
+                produto = 1
 
-def loc_maior(tamanho, t):
-    dados = [[0, 0, 0]]
+                a = linha + (direcao[key][0]*3) <= 19
+                b = coluna + (direcao[key][1]*3) <= 19
+                c = linha + (direcao[key][0] * 3) >= 0
+                d = coluna + (direcao[key][1]*3) >= 0
 
-    for linha in range(len(tamanho)):
-        for coluna in range(len(tamanho)):
-            produto = 1
-            x = int(linha)
-            y = int(coluna)
+                teste_logico = a and b and c and d
 
-            cond = [coluna + 3 < 20, coluna - 3 >= 0]
-            passo = [[0, 1], [0, -1]]
-            if cond[t]:
-                for i in range(4):
-                    if i == 0:
-                        produto *= matriz[linha][coluna]
-                    else:
-                        x += passo[t][0]
-                        y += passo[t][1]
-                        produto *= matriz[x][y]
+                if teste_logico:
 
-            if produto > dados[0][0]:
-                dados[0][0] = produto
-                dados[0][1] = linha
-                dados[0][2] = coluna
+                    for p in range(4):   # calcula o produto com base na direcao definica em cada chave de direcao
+                        if p == 0:
+                            x = matriz[linha][coluna]
+                            produto *= matriz[linha][coluna]
+
+                        else:
+                            lin = linha + direcao[key][0]*p      #  Soma da linha atual, mais a multiplica da direcao
+                            con = coluna + direcao[key][1]*p     #  Soma da linha atual, mais a multiplica da direcao
+                            x = matriz[lin][con]
+                            produto *= matriz[lin][con]
+
+                    if dados.get(key) is None:
+                        dados[key] = [linha, coluna, produto]
+
+                    elif dados[key][2] < produto:
+                        dados[key] = [linha, coluna, produto]
+
+                else:
+                    pass
 
     return dados
 
 
-esquerda = loc_maior(matriz, 0)
-direita = loc_maior(matriz, 1)
+print(max(maior(matriz).items(), key=lambda x: x[1][2]))
 
-
-print(esquerda)
-print(direita)
+"""
